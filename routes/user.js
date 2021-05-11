@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userModel = require("../models/userModel");
 
+// Handle user get request
 router.get("/getUser/:id", async (req, res, next) => {
     try {
         const userList = await userModel.findById(req.params.id);
@@ -13,6 +14,7 @@ router.get("/getUser/:id", async (req, res, next) => {
     }
 });
 
+// Handle user registeration request
 router.post("/register", async(req, res, next) => {
     try {
         const user = new userModel({
@@ -30,6 +32,7 @@ router.post("/register", async(req, res, next) => {
     }
 })
 
+// Handles invalid route request
 router.all("*", (req, res, next) => {
     try {
         const customError = new Error("Page not found");
